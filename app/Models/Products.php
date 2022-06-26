@@ -4,7 +4,7 @@ namespace App\Models;
  
 use Illuminate\Database\Eloquent\Model;
  
-class TrackingHistory extends Model
+class Products extends Model
 {
      /**
      * The attributes that are mass assignable.
@@ -12,9 +12,11 @@ class TrackingHistory extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'tnum',
-        'location',
-        'remarks',
+        'sku',
+        'category_id',
+        'subcategory_id',
+        'name',
+        'qty',
         'status'
     ];
 }

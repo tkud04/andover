@@ -9,10 +9,11 @@ use Auth;
 use \Swift_Mailer;
 use \Swift_SmtpTransport;
 use App\Models\User;
-use App\Models\Trackings;
-use App\Models\TrackingHistory;
-use App\Models\Shippers;
-use App\Models\Receivers;
+use App\Models\Categories;
+use App\Models\SubCategories;
+use App\Models\Products;
+use App\Models\ProductData;
+use App\Models\ProductImages;
 use App\Models\Senders;
 use App\Models\Plugins;
 use App\Models\Settings;
@@ -21,29 +22,17 @@ use GuzzleHttp\Client;
 class Helper implements HelperContract
 {    
 
-            public $emailConfig = [
-                           'ss' => 'smtp.gmail.com',
-                           'se' => 'uwantbrendacolson@gmail.com',
-                           'sp' => '587',
-                           'su' => 'uwantbrendacolson@gmail.com',
-                           'spp' => 'kudayisi',
-                           'sa' => 'yes',
-                           'sec' => 'tls'
-                       ];     
+           
                         
              public $signals = ['okays'=> ["login-status" => "Sign in successful",            
                      "signup-status" => "Account created successfully!",
                      "update-profile-status" => "Profile updated!",
-                     "new-tracking-status" => "Tracking added!",
-                     "tracking-status" => "Tracking updated!",
-                     "remove-tracking-status" => "Tracking removed!",
                      "contact-status" => "Message sent! Our customer service representatives will get back to you shortly.",
                      ],
                      'errors'=> ["login-status-error" => "There was a problem signing in, please contact support.",
 					 "signup-status-error" => "There was a problem signing in, please contact support.",
-					 "update-status-error" => "There was a problem updating the account, please contact support.",
+					 "update-profile-status-error" => "There was a problem updating your profile, please contact support.",
 					 "contact-status-error" => "There was a problem sending your message, please contact support.",
-                     "tracking-status-error" => "Tracking info does not exist!",
                     ]
                    ];
 
@@ -400,144 +389,48 @@ $subject = $data['subject'];
                return $u; 
            }		   
 		   
-		   function getTNum()
+		   function getSKU()
 		   {
-			   return "DGS".rand(1999,9999999);
+			   return "ADV".rand(1999,9999999);
 		   }
 		   
-		     function addTracking($data)
+		   function addCategory($data)
            {
-           	$tnum = isset($data['tnum']) ? $data['tnum'] : $this->getTNum();
-			 $ret = Trackings::where('tnum',$tnum)->first();
+             $id = isset($data['id']) ? $data['id'] : "vybz";
+           	 $ret = Categories::where('id',$id)->first();
 			 //dd($data);
 			if($ret == null)
 			{
 				#'tnum', 'stype', 'weight', 'origin', 'bmode', 'freight', 'mode', 'dest', 'desc', 'status'
-				$ret = Trackings::create(['tnum' => $tnum,                                                                                                          
-                                                      'stype' => $data['stype'], 
-                                                      'weight' => $data['weight'], 
-                                                      'origin' => $data['origin'], 
-                                                      'bmode' => $data['bmode'], 
-                                                      'freight' => $data['freight'], 
-                                                      'mode' => $data['mode'], 
-                                                      'description' => $data['description'], 
-													  'dest' => $data['dest'],
-                                                      'pickup_at' => $data['pickup_at'], 
-                                                      'status' => $data['status'], 
-                                                      ]);
+				$ret = Categories::create(['name' => $data['name'], 
+                                         ]);
 			}
-			else
-			{
-           	   $ret->update([ 'dest' => $data['dest'], 
-                                                  'stype' => $data['stype'], 
-                                                      'weight' => $data['weight'], 
-                                                      'origin' => $data['origin'], 
-                                                      'bmode' => $data['bmode'], 
-                                                      'freight' => $data['freight'], 
-                                                      'mode' => $data['mode'], 
-                                                      'description' => $data['description'], 
-													  'pickup_at' => $data['pickup_at'],
-                                                      'status' => $data['status'], 
-                                                      ]);
-
-              $shipper = Shippers::where('tnum',$data['tnum'])->first();
-              $receiver = Receivers::where('tnum',$data['tnum'])->first();
-
-              if($shipper != null && $receiver != null)
-              {
-                  $shipper->update([
-                      'name' => $data['sname'],
-                      'phone' => $data['sphone'],
-                      'address' => $data['sadd']
-                  ]);
-
-                  $receiver->update([
-                    'name' => $data['rname'],
-                    'phone' => $data['rphone'],
-                    'address' => $data['radd']
+            else
+            {
+                Categories::update([
+                    'name' => $data['name']
                 ]);
-              }
-			}                                         
-                return $ret;
+            }
+			
+            return $ret;
            }
            
-           function addTrackingHistory($data)
-           {
-           	
-				#''tnum', 'location', 'remarks', 'status'
-				$ret = TrackingHistory::create(['tnum' => $data['tnum'],                                                                                                          
-                                                      'location' => $data['location'], 
-                                                      'remarks' => $data['remarks'],                                                     
-                                                      'status' => $data['status'], 
-                                                      ]);
-			    
-                 $ret = Trackings::where('tnum',$data['tnum'])->first();
-				 $ret->update(['status' =>  $data['status']]);
-				
-                return $ret;
-				
-           }
-           
-           function addShipper($data)
-           {
-           	
-				#''tnum', 'location', 'remarks', 'status'
-				$ret = Shippers::create(['tnum' => $data['tnum'],                                                                                                          
-                                                      'name' => $data['name'], 
-                                                      'phone' => $data['phone'],                                                     
-                                                      'address' => $data['address'], 
-                                                      ]);
-			                                  
-                return $ret;
-           }
-           
-           function addReceiver($data)
-           {
-           	
-				#''tnum', 'location', 'remarks', 'status'
-				$ret = Receivers::create(['tnum' => $data['tnum'],                                                                                                          
-                                                      'name' => $data['name'], 
-                                                      'phone' => $data['phone'],                                                     
-                                                      'address' => $data['address'], 
-                                                      ]);
-			                                  
-                return $ret;
-           }
-		   
-		   function getTracking($tnum, $params = [])
+          
+		   function getCategory($id,$params = [])
            {
            	$ret = [];
-               $t = Trackings::where('tnum',$tnum)->first();
+               $c = Categories::where(id,$id)->first();
  
-              if($t != null)
+              if($c != null)
                {
                	#'tnum', 'stype', 'weight', 'origin', 'bmode', 'freight', 'mode', 'dest', 'desc', 'status'
-                   $temp['id'] = $t->id; 
-                   	     $temp['tnum'] = $t->tnum; 
-                   	     $temp['stype'] = $t->stype; 
-                            $temp['weight'] = $t->weight; 
-                            $temp['origin'] = $t->origin; 
-                            $temp['bmode'] = $t->bmode; 
-                            $temp['freight'] = $t->freight; 
-                            $temp['mode'] = $t->mode; 
-                            $temp['description'] = $t->description; 
-                            $temp['dest'] = $t->dest; 
-							if(isset($params['rawDate']) && $params['rawDate'])
-                            {
-                                $temp['pickup_at'] = $t->pickup_at;
-                            }
-                            else
-                            {
-                                $temp['pickup_at'] = Carbon::createFromFormat('d/m/Y',$t->pickup_at)->format("jS F, Y");
-                            }
-                            $temp['status'] = $t->status; 
-                         $temp['date'] = $t->created_at->format("jS F, Y"); 
-                         $temp['last_updated'] = $t->updated_at->format("jS F, Y");
+                   $temp['id'] = $c->id; 
+                   $temp['date'] = $c->created_at->format("jS F, Y"); 
+                   $temp['last_updated'] = $c->updated_at->format("jS F, Y");
 
-                         if(isset($params['mode']) && $params['mode'] == "all")
+                         if(isset($params['mode']) && $params['mode'] == "with_subcategories")
                          {
-                             $temp['shipper'] = $this->getShipper($tnum);
-                             $temp['receiver'] = $this->getReceiver($tnum);
+                             $temp['subcategories'] = $this->getSubCategories(['category_id' => $c->id]);
                          }
                        $ret = $temp; 
                }                          
@@ -545,16 +438,16 @@ $subject = $data['subject'];
                 return $ret;
            }	
 
-           function getTrackings($params = [])
+           function getCategories($params = [])
            {
            	   $ret = [];
-				   $trackings =  Trackings::where('id','>','0')->latest()->get();
+				   $categories =  Categories::where('id','>','0')->latest()->get();
 				   
-				   if($trackings != null)
+				   if($categories != null)
 				   {
-					  foreach($trackings as $t)
+					  foreach($categories as $c)
 					  {
-                   	     $temp = $this->getTracking($t->tnum, $params);
+                   	     $temp = $this->getCategory($t->tnum, $params);
                          array_push($ret,$temp); 
 					  }
                     }                          
@@ -562,83 +455,290 @@ $subject = $data['subject'];
                 return $ret;
            }
 
+           function removeCategory($data)
+           {
+              $c = Categories::where('id',$data['id'])->first();
 
-  function getTrackingHistory($tnum)
-           {
-           	$ret = [];
- 
-              $trackings =  TrackingHistory::where('tnum',$tnum)->latest()->get();
-				   
-				   if($trackings != null)
-				   {
-					  foreach($trackings as $t)
-					  {
-                   	     $temp['id'] = $t->id; 
-                   	     $temp['tnum'] = $t->tnum; 
-                   	     $temp['location'] = $t->location; 
-                            $temp['remarks'] = $t->remarks;                             
-                   	     $temp['status'] = $t->status; 
-                         $temp['date'] = $t->created_at->format("jS F, Y h:i A"); 
-                         $temp['last_updated'] = $t->updated_at->format("jS F, Y h:i A");
-                         array_push($ret,$temp); 
-					  }
-                    }                   
-                                                      
-                return $ret;
-           }		   
-           
-           function getShipper($tnum)
-           {
-           	$ret = [];
-               $t = Shippers::where('tnum',$tnum)->first();
- 
-              if($t != null)
+               if($c != null)
                {
-               	$temp = [];
-                   $temp['id'] = $t->id; 
-                   	     $temp['tnum'] = $t->tnum; 
-                   	     $temp['name'] = $t->name; 
-                            $temp['address'] = $t->address; 
-                            $temp['phone'] = $t->phone;                            
-                         $temp['date'] = $t->created_at->format("jS F, Y"); 
-                         $temp['last_updated'] = $t->updated_at->format("jS F, Y");
+                   SubCategories::where('category_id',$c->id)->delete();
+                   $c->delete();
+               }
+           }
+
+           function addSubCategory($data)
+           {
+             $id = isset($data['id']) ? $data['id'] : "vybz";
+           	 $ret = SubCategories::where('id',$id)->first();
+			 //dd($data);
+			if($ret == null)
+			{
+				#'tnum', 'stype', 'weight', 'origin', 'bmode', 'freight', 'mode', 'dest', 'desc', 'status'
+				$ret = SubCategories::create(['name' => $data['name'], 
+                                         ]);
+			}
+            else
+            {
+                SubCategories::update([
+                    'name' => $data['name']
+                ]);
+            }
+			
+            return $ret;
+           }
+
+           function getSubCategory($id,$params = [])
+           {
+           	$ret = [];
+               $s = SubCategories::where(id,$id)->first();
+ 
+              if($s != null)
+               {
+               	#'tnum', 'stype', 'weight', 'origin', 'bmode', 'freight', 'mode', 'dest', 'desc', 'status'
+                   $temp['id'] = $s->id; 
+                   $temp['category_id'] = $s->category_id;
+                   $temp['date'] = $s->created_at->format("jS F, Y"); 
+                   $temp['last_updated'] = $s->updated_at->format("jS F, Y");
+
+                         if(isset($params['mode']) && $params['mode'] == "with_brands")
+                         {
+                             $temp['brands'] = $this->getBrands(['brand' => $s->id]);
+                         }
                        $ret = $temp; 
                }                          
                                                       
                 return $ret;
            }	
-           
-           function getReceiver($tnum)
+
+           function getSubCategories($params = [])
            {
-           	$ret = [];
-               $t = Receivers::where('tnum',$tnum)->first();
- 
-              if($t != null)
-               {
-               	$temp = [];
-                   $temp['id'] = $t->id; 
-                   	     $temp['tnum'] = $t->tnum; 
-                   	     $temp['name'] = $t->name; 
-                            $temp['address'] = $t->address; 
-                            $temp['phone'] = $t->phone;                            
-                         $temp['date'] = $t->created_at->format("jS F, Y"); 
-                         $temp['last_updated'] = $t->updated_at->format("jS F, Y");
-                       $ret = $temp; 
-               }                          
+           	   $ret = [];
+				   $subs =  SubCategories::where('id','>','0')->latest()->get();
+				   
+				   if($subs != null)
+				   {
+					  foreach($subs as $s)
+					  {
+                   	     $temp = $this->getSubCategory($s->id, $params);
+                         array_push($ret,$temp); 
+					  }
+                    }                          
                                                       
                 return $ret;
            }
 
-           function track($tnum)
-		   {
-			   $ret = [];
-			  $ret['tracking'] = $this->getTracking($tnum);
-			 $ret['shipper'] = $this->getShipper($tnum);
-			 $ret['receiver'] = $this->getReceiver($tnum);
-			 $ret['history'] = $this->getTrackingHistory($tnum);
-             return $ret;
-		   }		
-           
+           function removeSubCategory($data)
+           {
+               $s = SubCategories::where('id',$data['id'])->first();
+
+               if($s != null)
+               {
+                  $s->delete();
+               }
+           }
+
+           function addProduct($data)
+           {
+             $id = isset($data['id']) ? $data['id'] : "vybz";
+           	 $ret = Products::where('id',$id)->first();
+			 //dd($data);
+			if($ret == null)
+			{
+				$ret = Products::create([
+                    'sku' => $this->getSKU(),
+                    'name' => $data['name'], 
+                    'category_id' => $data['category_id'],
+                    'subcategory_id' => $data['subcategory_id'],
+                    'qty' => $data['qty'],
+                    'status' => $data['status']
+                ]);
+
+                $data['sku'] = $ret->sku;
+			}
+            else
+            {
+                $temp = [];
+                if(isset($data['name'])) $temp['name'] = $data['name'];
+                if(isset($data['qty'])) $temp['qty'] = $data['qty'];
+                if(isset($data['status'])) $temp['status'] = $data['status'];
+                $ret->update($temp);
+
+            }
+
+            $pd = $this->addProductData($data);
+            $imgs = $this->addProductImages($data);
+			
+            return $ret;
+           }
+
+           function getProduct($id,$params = [])
+           {
+           	$ret = [];
+               $p = Products::where(id,$id)->first();
+ 
+              if($p != null)
+               {
+               	   $temp['id'] = $p->id; 
+               	   $temp['sku'] = $p->sku; 
+                   $temp['category_id'] = $p->category_id;
+                   $temp['subcategory_id'] = $p->subcategory_id;
+                   $temp['name'] = $p->name;
+                   $temp['qty'] = $p->qty;
+                   $temp['status'] = $p->status;
+                   $temp['data'] = $this->getProductData($p->sku);
+                   $temp['images'] = $this->getProductImages($p->sku);
+                   $temp['date'] = $p->created_at->format("jS F, Y"); 
+                   $temp['last_updated'] = $p->updated_at->format("jS F, Y");
+                   $ret = $temp; 
+               }                          
+                                                      
+                return $ret;
+           }	
+
+           function getProducts($params = [])
+           {
+           	   $ret = [];
+				   $products =  Products::where('id','>','0')->latest()->get();
+				   
+				   if($products != null)
+				   {
+					  foreach($products as $p)
+					  {
+                   	     $temp = $this->getProduct($p->id, $params);
+                         array_push($ret,$temp); 
+					  }
+                    }                          
+                                                      
+                return $ret;
+           }
+
+           function removeProduct($data)
+           {
+              $sku = $data['sku'];
+               $p = Products::where('sku',$sku)->first();
+
+               if($p != null)
+               {
+                  ProductData::where('sku',$sku)->delete();
+                  ProductImages::where('sku',$sku)->delete();
+                  $p->delete();
+               }
+           }
+
+
+           function addProductData($data)
+           {
+            $ret = ProductData::where('sku',$data['sku'])->first();
+
+            if($ret == null)
+            {
+                $ret = ProductData::create([
+                    'sku' => $data['sku'],
+                    'price' => $data['price'], 
+                    'availability' => $data['availability'],
+                    'description' => $data['description'],
+                    'rating' => $data['rating'],
+                ]);
+            }
+            else
+            {
+                $temp = [];
+                if(isset($data['price'])) $temp['price'] = $data['price'];
+                if(isset($data['availability'])) $temp['availability'] = $data['availability'];
+                if(isset($data['description'])) $temp['description'] = $data['description'];
+                if(isset($data['rating'])) $temp['rating'] = $data['rating'];
+                $ret->update($temp);
+            }
+            
+			
+            return $ret;
+           }
+
+           function getProductData($sku)
+           {
+           	$ret = [];
+               $pd = ProductData::where('sku',$sku)->first();
+ 
+              if($pd != null)
+               {
+               	   $temp['id'] = $pd->id; 
+               	   $temp['sku'] = $pd->sku; 
+                   $temp['price'] = $pd->price;
+                   $temp['availability'] = $pd->availability;
+                   $temp['description'] = $pd->description;
+                   $temp['rating'] = $pd->qty;
+                   $temp['date'] = $pd->created_at->format("jS F, Y"); 
+                   $temp['last_updated'] = $pd->updated_at->format("jS F, Y");
+                   $ret = $temp; 
+               }                          
+                                                      
+                return $ret;
+           }	
+
+           function removeProductData($data)
+           {
+              $sku = $data['sku'];
+               $pd = ProductData::where('sku',$sku)->first();
+
+               if($pd != null)
+               {
+                 $pd->delete();
+               }
+           }
+
+
+           function addProductImages($data)
+           {
+            $ret = ProductImages::where('sku',$data['sku'])->first();
+
+            if($ret == null)
+            {
+                $ret = ProductImages::create([
+                    'sku' => $data['sku'],
+                    'url' => $data['url'],
+                ]);
+            }
+            else
+            {
+                $temp = [];
+                if(isset($data['sku'])) $temp['sku'] = $data['sku'];
+                if(isset($data['url'])) $temp['url'] = $data['url'];
+                $ret->update($temp);
+            }
+            
+			
+            return $ret;
+           }
+
+           function getProductImages($sku)
+           {
+           	$ret = [];
+               $imgs = ProductImages::where('sku',$sku)->first();
+ 
+              if($imgs != null)
+               {
+               	   $temp['id'] = $imgs->id; 
+               	   $temp['sku'] = $imgs->sku; 
+                   $temp['url'] = $imgs->url;
+                   $ret = $temp; 
+               }                          
+                                                      
+                return $ret;
+           }	
+
+           function removeProductImages($data)
+           {
+              $sku = $data['sku'];
+               $imgs = ProductImages::where('sku',$sku)->first();
+
+               if($imgs != null)
+               {
+                 $imgs->delete();
+               }
+           }
+
+
+  
            function getDashboardStats()
            {
                $ret = []; $temp = [];

@@ -13,16 +13,7 @@ class Trackings extends Model
      */
 
      protected $fillable = [
-        'tnum',
-        'stype',
-        'weight',
-        'origin', 
-        'bmode', 
-        'freight', 
-        'mode', 
-        'dest', 
-        'pickup_at', 
-        'description', 
-        'status'
+        'sku',
+        'url',
     ];
 }

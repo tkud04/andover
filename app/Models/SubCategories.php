@@ -1,20 +1,19 @@
 <?php
- 
+
 namespace App\Models;
- 
+
 use Illuminate\Database\Eloquent\Model;
- 
-class Receivers extends Model
+
+class SubCategories extends Model
 {
-     /**
+
+    /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $fillable = [
-        'tnum',
-        'name',
-        'phone',
-        'address'
+        'category_id', 'name',
     ];
+    
 }

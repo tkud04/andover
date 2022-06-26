@@ -1,442 +1,435 @@
 <?php
-$void = "javascript:void(0)";
+$phone = '023 233 455 55';
 ?>
+
 <!DOCTYPE html>
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title') | DGS Couriers Worldwide</title>
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" /><!-- Bootstrap -->
-    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css" /><!-- Owl Carousal -->	
-    <link rel="stylesheet" href="css/icons.css" type="text/css" /><!-- Font Awesome -->
-    <link rel="stylesheet" href="css/select2.min.css" type="text/css" /><!-- Select2 -->
-    <link rel="stylesheet" href="css/perfect-scrollbar.css" /><!-- Scroll Bar -->
-    <link rel="stylesheet" href="css/style.css" type="text/css" /><!-- Style -->	
-    <link rel="stylesheet" href="css/responsive.css" type="text/css" /><!-- Responsive -->		
-    <link rel="stylesheet" href="css/colors/color.css" type="text/css" /><!-- Color -->	
-    <link rel="stylesheet" href="layerslider/css/layerslider.css" type="text/css"><!-- Layer Slider -->
-    <link rel="stylesheet" href="css/custom.css?ver={{rand(12454494,2237347438)}}" type="text/css"><!-- Custom style -->
-
-    <!--SweetAlert CSS--> 
-    <link href="lib/sweet-alert/sweetalert2.css" rel="stylesheet">
-
-    <!--Datatables CSS--> 
-    <link href="lib/datatables/datatables.min.css" rel="stylesheet">
-
+<!-- Basic Page Needs
+  ================================================== -->
+<meta charset="utf-8">
+<title>@yield('title') | Andover Gadgets</title>
+<!-- SEO Meta
+  ================================================== -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="distribution" content="global">
+<meta name="revisit-after" content="2 Days">
+<meta name="robots" content="ALL">
+<meta name="rating" content="8 YEARS">
+<meta name="Language" content="en-us">
+<meta name="GOOGLEBOT" content="NOARCHIVE">
+<!-- Mobile Specific Metas
+  ================================================== -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!-- CSS
+  ================================================== -->
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="css/fotorama.css">
+<link rel="stylesheet" type="text/css" href="css/magnific-popup.css">
+<link rel="stylesheet" type="text/css" href="css/custom.css">
+<link rel="stylesheet" type="text/css" href="css/responsive.css">
+<link rel="shortcut icon" href="images/favicon.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
 </head>
+<body class="homepage">
+<div class="se-pre-con"></div>
+<div id="newslater-popup" class="mfp-hide white-popup-block open align-center">
+  <div class="nl-popup-main">
+    <div class="nl-popup-inner">
+      <div class="newsletter-inner">
+        <span>Sign up & get 10% off</span>
+        <h2 class="main_title">Subscribe Emails</h2>
+        <form>
+          <input type="email" placeholder="Email Here...">
+          <button class="btn-black" title="Subscribe">Subscribe</button>
+        </form>
+        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
-<body itemscope="">
-    <div class="theme-layout">
-        <header class="fancy-header scrollup stick">
-            <div class="top-sec">
-                <div class="top-bar">
-                    <div class="container">
-                        <span class="cargo-time"><i class="fa fa-clock-o"></i>Working Time : 08:00AM - 9:00PM</span>
-                        <div class="connect-us">
-                            <ul class="social-btn">
-                                <li><a itemprop="url" href="#" title=""><i class="fa fa-facebook"></i></a></li>
-                                <li><a itemprop="url" href="#" title=""><i class="fa fa-linkedin"></i></a></li>
-                                <li><a itemprop="url" href="#" title=""><i class="fa fa-twitter"></i></a></li>
-                                <li><a itemprop="url" href="#" title=""><i class="fa fa-reddit"></i></a></li>
-                                <li><a itemprop="url" href="#" title=""><i class="fa fa-rss"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="extra-links">
-                            <a itemprop="url" href="#" title="">Support</a>   /  
-                             @if($user == null)
-                               <a itemprop="url" href="#" title="" class="popup1">Sign In</a>
-                             @else
-                             &nbsp;Hi {{$user->fname}}, <a itemprop="url" href="{{url('dashboard')}}" title="" class="">Dashboard</a> | <a itemprop="url" href="{{url('bye')}}" title="" class="">Sign out</a>
-                             @endif
-                        </div>
-                    </div>
-                </div>
-            </div><!-- Top Sec -->
-            <div class="logo-menu-sec">
-                <div class="logo-menu">
-                    <div class="logo">
-                        <a itemprop="url" href="{{url('/')}}" title=""><img itemprop="image" src="images/resource/logo.png" class="logooo" alt="" /></a>
-                    </div>
-                    <div class="quick-contact">
-                        <ul>
-                            <li>
-                                <img src="images/resource/phone.png" alt="" />
-                                <span>954-462-1006</span>
-                                <p>London's Office</p>
-                            </li>
-                            <li>
-                                <img src="images/resource/sms.png" alt="" />
-                                <span>example @ gmail.com</span>
-                                <p>Have Any Question?</p>
-                            </li>
-                            <li>
-                                <a href="#" title="" itemprop="url" class="theme-btn popup2">TRACK A SHIPMENT</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <nav class="menu-curve">
-                    <ul>
-                      <li><a itemprop="url" href="{{url('/')}}" title="">Home</a></li>
-                      <li class="menu-item-has-children"><a itemprop="url" href="#" title="">Know More</a>
-                            <ul>
-                                <li><a itemprop="url" href="{{url('about')}}" title="">About Us</a></li>
-                                <li><a itemprop="url" href="{{url('why-us')}}" title="">What Makes Us Different</a></li>
-                            </ul>
-                      </li>
-                      <li><a itemprop="url" href="{{url('contact')}}" title="">Contact Us</a></li>
-                    </ul>
-                </nav>
-            </div><!-- Logo Menu Sec -->
-        </header>
-
-        <div class="responsive-header">
-            <span class="top-sec-btn"><i class="fa fa-angle-double-down"></i></span>
-            <div class="responsive-top-sec">
-                <div class="responsive-top-bar top-bar">
-                    <div class="container">
-                        <span class="cargo-time">Opening Time :<i>08:00AM - 9:00PM</i></span>
-                        <div class="connect-us">
-                            <ul class="social-btn">
-                                <li><a itemprop="url" href="#" title=""><i class="fa fa-facebook"></i></a></li>
-                                <li><a itemprop="url" href="#" title=""><i class="fa fa-linkedin"></i></a></li>
-                                <li><a itemprop="url" href="#" title=""><i class="fa fa-twitter"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!-- Responsive Top Bar -->
-                <div class="responsive-quick-contact">
-                    <div class="container">
-                        <div class="quick-contact">
-                            <ul>
-                                <li>
-                                    <img src="images/resource/phone.png" alt="" />
-                                    <span>954-462-1006</span>
-                                    <p>London's Office</p>
-                                </li>
-                                <li>
-                                    <img src="images/resource/sms.png" alt="" />
-                                    <span>example @ gmail.com</span>
-                                    <p>Have Any Question?</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!-- Responsive Quick Contact -->
+<div class="main">
+    
+   <!-- HEADER START -->
+  <header class="navbar navbar-custom container-full-sm" id="header">
+    <div class="header-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-6">
+            <div class="top-link top-link-left">
+              <ul>
+                <li class="language-icon">
+                  <select>
+                    <option selected="selected" value="">English</option>
+                    <!--<option value="">French</option>
+                    <option value="">German</option>-->
+                  </select>
+                </li>
+                <li class="sitemap-icon">
+                  <select>
+                    <option selected="selected" value="">USD</option>
+                    <!--<option value="">AUD</option>
+                    <option value="">EUR</option>-->
+                  </select>
+                </li> 
+              </ul>
             </div>
-            <div class="responsive-nav">
-                <div class="container">
-                    <div class="responsive-logo">
-                        <div class="logo">
-                            <a itemprop="url" href="{{url('/')}}" title=""><img itemprop="image" src="images/resource/logo.png" alt="" /></a>
-                        </div>
-                    </div>
-                    <span class="responsive-btn"><i class="fa fa-list"></i></span>
-                    <div class="responsive-menu">
-                        <span class="close-btn"><i class="fa fa-close"></i></span>
-                        <ul class="responsive-popup-btns">
-                            <li><i class="fa fa-user"></i><a itemprop="url" href="#" title="" class="popup1">Sign In</a></li>
-                            <li><i class="fa fa-paper-plane"></i><a itemprop="url" href="#" title="" class="popup2">TRACK A SHIPMENT</a></li>
-                        </ul>
-                        <ul>
-                         <li><a itemprop="url" href="{{url('/')}}" title="">Home</a></li>
-                         <li class="menu-item-has-children"><a itemprop="url" href="#" title=""></a>
-                            <ul>
-                                <li><a itemprop="url" href="{{url('about')}}" title="">About Us</a></li>
-                                <li><a itemprop="url" href="{{url('why-us')}}" title="">What Makes Us Different</a></li>
-                            </ul>
-                         </li>
-                        
-                         <li><a itemprop="url" href="{{url('contact')}}" title="">Contact Us</a></li>
-                       </ul>
-                    </div><!-- Responsive Menu -->
-                </div>
+          </div>
+          <div class="col-6">
+            <div class="top-link right-side">
+              <div class="help-num" >Need Help? :{{$phone}}</div>
             </div>
-        </div><!--Responsive header-->
-
-        @if($user == null)
-        <div id="signup-popup">
-            <div class="region2"  id="signup">
-                <div class="modal-dialog1">
-                    <div class="modal-content1">
-                        <div class="modal-body1">
-                            <div class="signup-form">
-                                <button type="submit"><img src="images/close1.png" alt="" /></button>
-                                <div class="row">
-                                    <div class="col-md-12" id="signin-div">
-                                        <div class="sign-in banner-detail1">
-                                            <div class="heading2">
-                                                <span>DGS Couriers</span>
-                                                <h3>Sign In Now</h3>
-                                            </div>
-                                            <p>Acess your account (staff and admin)</p>
-                                            <form id="login-form" method="post" action="{{url('login')}}">
-                                                {!! csrf_field() !!}
-                                                <label>
-                                                    <i class="fa fa-user"></i>
-                                                    <input type="text" id="login-email" name="email" class="text-field" placeholder="Email address">
-                                                </label>
-                                                <label>
-                                                    <i class="fa fa-anchor"></i>
-                                                    <input type="password" id="login-password" name="password" class="text-field" placeholder="Password">
-                                                </label>
-                                                <div class="terms-services">
-                                                    <span>
-                                                        <input tabindex="23" type="checkbox" id="field15" checked />
-                                                        <label for="field15">Remember My Password</label>
-                                                    </span>
-                                                </div>
-                                                
-                                                <ul>
-                                                    <li><a href="#" id="login-btn" title="" class="theme-btn" itemprop="url"><i class="fa fa-paper-plane"></i>SIGN IN</a></li>
-                                                    <li><a href="#" title="" itemprop="url"></a></li>
-                                                </ul>
-                                                
-                                            </form>
-                                        </div><!-- Sign In -->
-                                    </div>
-                                    <div class="col-md-12" id="signup-div">
-                                        <div class="sign-in banner-detail1 si">
-                                            <div class="heading2">
-                                                <span>DGS Couriers</span>
-                                                <h3>Sign Up</h3>
-                                            </div>
-                                            <p>Create a new account (for staff and admin)</p>
-                                            <form id="signup-form" method="post" action="{{url('signup')}}">
-                                                {!! csrf_field() !!}
-                                                <label>
-                                                    <input type="text" class="text-field" id="signup-fname" name="fname" placeholder="First Name" required>
-                                                </label>
-                                                <label>
-                                                    <input type="text" class="text-field" id="signup-lname" name="lname" placeholder="Last Name" required>
-                                                </label>
-                                                <label>
-                                                    <i class="fa fa-envelope"></i>
-                                                    <input type="email" class="text-field" id="signup-email" name="email" placeholder="Email Address" required>
-                                                </label>
-                                                <label>
-                                                    <i class="fa fa-anchor"></i>
-                                                    <input type="password" id="signup-password" name="password" class="text-field" placeholder="New Password:">
-                                                </label>
-                                                <label>
-                                                    <i class="fa fa-anchor"></i>
-                                                    <input type="password" id="signup-password2" name="password_confirmation" class="text-field" placeholder="Re-Type Password:">
-                                                </label>
-                                                <div class="terms-services">
-                                                    <span>
-                                                        <input tabindex="23" type="checkbox" id="field16" />
-                                                        <label for="field16">I agree to the Unload <a href="#" title="">Terms of Service</a> and <a href="#" title="">Privacy Policy</a></label>
-                                                    </span>
-                                                </div>
-                                                <a href="#" id="signup-btn" title="" class="theme-btn" itemprop="url"><i class="fa fa-paper-plane"></i>SIGN UP</a>
-                                            </form>
-                                        </div><!-- Sign Up -->
-                                    </div>
-                                </div>
-                            </div><!-- Signup Form -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><!-- Signup Popup -->
-        @endif
-
-        <div id="calculate-form-popup">
-            <div class="calculate-form-popup">
-                <div class="modal-dialog2">
-                    <div class="modal-content2">
-                        <div class="modal-body2">
-                            <button type="submit"><img src="images/close1.png" alt="" /></button>
-                            <div class="cargo-shipment">
-                                <div class="calculate-shipping">
-                                    <div class="dark-title">
-                                        <span><i class="fa fa-steam"></i>Track a shipment; get live status of your order</span>
-                                        <h3>TRACK SHIPMENT</h3>
-                                    </div>
-
-                                    <div class="calculate-shipping-form">
-                                        <form>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="select-service select-box">
-                                                        <input type="text" class="text-field" placeholder="Tracking number" id="track-popup-tnum"/>
-                                                    </div>
-                                                </div>
-
-                                               
-                                                <div class="col-md-12">
-                                                    <div class="total">
-                                                        <div class="cargo-total"><a id="track-popup-submit" href="javascript:void(0)" class="btn btn-primary">SUBMIT</a></div>
-                                                    </div>
-                                                    <p id="track-popup-tnum-error" class="text-danger text-bold">This field is required</p>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div><!-- Calculate Shipping -->
-                            </div><!-- Cargo Shipment -->
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-			
-					 
-		  @yield('slider')
-		  
-		  <!--------- Input errors -------------->
-                    @if (count($errors) > 0)
+      </div>
+    </div>
+    <div class="header-middle">
+      <div class="container">
+        <hr>
+        <div class="header-inner">
+          <div class="row">
+            <div class="col-xl-2 col-lg-3">
+              <div class="header-middle-left">
+                <div class="navbar-header float-none-sm">
+                  <a class="navbar-brand page-scroll" href="{{url('/')}}">
+                    <img alt="Andover Gadgets" src="images/logo.png">
+                  </a> 
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-10 col-lg-9">
+              <div class="header-middle-right navbar-expand-lg">
+                <div class="row">
+                  <div class="col-xl-7 col-lg-9 ">
+                    <div class="header-bottom">
+                      <div class="position-r">          
+                        <div class="nav_sec position-r">
+                          <div class="mobilemenu-title mobilemenu">
+                            <span>Menu</span>
+                            <i class="fa fa-bars pull-right"></i>
+                          </div>
+                          <div class="mobilemenu-content">
+                            <ul class="nav navbar-nav" id="menu-main">
+                              <li class="active">
+                                <a href="{{url('/')}}">Home</a>
+                              </li>
+                              <li>
+                                <a href="{{url('shop')}}">Shop</a>
+                              </li>
+                              <li>
+                                <a href="{{url('about')}}">About Us</a>
+                              </li>
+                              <li>
+                                <a href="{{url('contact')}}">Contact</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-5 col-lg-3">
+                    <div class="middle-link right-side">
+                      <ul>
+                        <li class="login-icon content">
+                          <a class="content-link">
+                          <span class="content-icon"></span> 
+                          </a> 
+                          <?php
+                            if($user == null){
+                          ?>
+                          <a href="{{url('login')}}" title="Login">Login</a> or
+                          <a href="{{url('register')}}" title="Register">Register</a>
+                          <div class="content-dropdown">
+                            <ul>
+                              <li class="login-icon"><a href="{{url('login')}}" title="Login"><i class="fa fa-user"></i> Login</a></li>
+                              <li class="register-icon"><a href="{{url('login')}}" title="Register"><i class="fa fa-user-plus"></i> Register</a></li>
+                            </ul>
+                          </div>
+                          <?php
+                            }
+                            else {
+                          ?>
+                           <a href="{{url('dashboard')}}" title="Dashboard">Dashboard</a>
+                           <a href="{{url('orders')}}" title="Orders">Orders</a>
+                          <a href="{{url('logout')}}" title="Logout">Logout</a>
+                          <div class="content-dropdown">
+                            <ul>
+                              <li class="login-icon"><a href="{{url('login')}}" title="Login"><i class="fa fa-user"></i> Login</a></li>
+                              <li class="register-icon"><a href="{{url('login')}}" title="Register"><i class="fa fa-user-plus"></i> Register</a></li>
+                            </ul>
+                          </div>
+                           <?php
+                            }
+                          ?>
+                        </li>
+                        <li class="track-icon">
+                          <a title="Track your order" href="{{$void}}"><span></span> Track your order</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xl-8 col-lg-8">
+                    <div class="header-right-part">
+                      <div class="category-dropdown">
+                        <select id="search-category" name="search-category">
+                          <option value="">All Categories</option>
+                          <option value="20">Electrronics</option>
+                          <option value="26">■ PC</option>
+                          <option value="43">&nbsp;&nbsp;&nbsp;- Dell Inspiron</option>
+                          <option value="44">&nbsp;&nbsp;&nbsp;- Hp Notebook</option>
+                          <option value="47">&nbsp;&nbsp;&nbsp;- Sony Vio</option>
+                          <option value="55">&nbsp;&nbsp;&nbsp;- Samsung Tablet</option>
+                          <option value="27">■ Mac</option>
+                          <option value="48">&nbsp;&nbsp;&nbsp;- Desktop Mac</option>
+                          <option value="49">&nbsp;&nbsp;&nbsp;- Laptop Mac</option>
+                          <option value="50">&nbsp;&nbsp;&nbsp;- Samsung Mac</option>
+                          <option value="38">&nbsp;&nbsp;&nbsp;- Android tablets</option>
+                          <option value="51">■ Laptops</option>
+                          <option value="52">&nbsp;&nbsp;&nbsp;- Accer laptop</option>
+                          <option value="56">&nbsp;&nbsp;&nbsp;- apple ipad</option>
+                          <option value="53">&nbsp;&nbsp;&nbsp;- HP Laptop</option>
+                          <option value="54">&nbsp;&nbsp;&nbsp;- DELL Laptop</option>
+                         
+                        </select>
+                      </div>
+                      <div class="main-search">
+                        <div class="header_search_toggle desktop-view">
+                          <form>
+                            <div class="search-box">
+                              <input class="input-text" type="text" placeholder="Search entire store here...">
+                              <button class="search-btn"></button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-4 col-lg-4">
+                    <div class="right-side header-right-link">
+                      <ul>
+                        <li class="compare-icon">
+                          <a href="compare.html">
+                            <span></span>
+                          </a>
+                        </li>
+                        <li class="wishlist-icon">
+                          <a href="wishlist.html">
+                            <span></span>
+                          </a>
+                        </li>
+                        <li class="cart-icon"> <a href="#"> <span> <small class="cart-notification">2</small> </span> </a>
+                          <div class="cart-dropdown header-link-dropdown">
+                            <ul class="cart-list link-dropdown-list">
+                              <li> <a class="close-cart"><i class="fa fa-times-circle"></i></a>
+                                <div class="media"> <a class="pull-left"> <img alt="Electrro" src="images/1.jpg"></a>
+                                  <div class="media-body"> <span><a>Black African Print Skirt</a></span>
+                                    <p class="cart-price">$14.99</p>
+                                    <div class="product-qty">
+                                      <label>Qty:</label>
+                                      <div class="custom-qty">
+                                        <input type="text" name="qty" maxlength="8" value="1" title="Qty" class="input-text qty">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+                              <li> <a class="close-cart"><i class="fa fa-times-circle"></i></a>
+                                <div class="media"> <a class="pull-left"> <img alt="Electrro" src="images/2.jpg"></a>
+                                  <div class="media-body"> <span><a>Black African Print Skirt</a></span>
+                                    <p class="cart-price">$14.99</p>
+                                    <div class="product-qty">
+                                      <label>Qty:</label>
+                                      <div class="custom-qty">
+                                        <input type="text" name="qty" maxlength="8" value="1" title="Qty" class="input-text qty">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+                            </ul>
+                            <p class="cart-sub-totle"> <span class="pull-left">Cart Subtotal</span> <span class="pull-right"><strong class="price-box">$29.98</strong></span> </p>
+                            <div class="clearfix"></div>
+                            <div class="mt-20"> <a href="cart.html" class="btn-color btn">Cart</a> <a href="checkout.html" class="btn-color btn right-side">Checkout</a> </div>
+                          </div>
+                        </li>
+                        <li class="side-toggle">
+                          <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                            <i class="fa fa-bars"></i>
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+  </header>
+  <!-- HEADER END --> 
+
+   <!--------- Input errors -------------->
+   @if (count($errors) > 0)
                           @include('input-errors', ['errors'=>$errors])
                      @endif 
 		  
 		  @yield('content')
-		  
-      <footer>
-            <section class="block">
-                <div class="parallax dark" data-velocity="-.2" style="background: rgba(0, 0, 0, 0) url(images/parallax2.jpg) no-repeat 50% 0;"></div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-3 column">
-                                    <div class="widget">
-                                        <div class="about-widget">
-                                            <div class="logo">
-                                                <a itemprop="url" href="{{url('/')}}" title=""><img itemprop="image" src="images/resource/logo-2.png" class="logoo" alt="" /></a>
-                                            </div>
-                                            <p itemprop="description">Vestibulum id ligula porta felis euismod sem per. Aenean eu leo quam. Pellen tesque orn are sem lacinia quam venenatis. Fusce dap ibus, tellus ac cursus commodo ut fermentu massa. mentum sit amet risus.</p>
-                                            <ul class="social-btn">
-                                                <li><a href="#" title="" itemprop="url"><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href="#" title="" itemprop="url"><i class="fa fa-linkedin"></i></a></li>
-                                                <li><a href="#" title="" itemprop="url"><i class="fa fa-facebook"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-5 column">
-                                    <Div class="row">
-                                        <div class="col-md-6 column">
-                                            <div class="widget">
-                                                <div class="heading2">
-                                                    <span>Fast And Safe</span>
-                                                    <h3>USEFUL LINKS</h3>
-                                                </div>
-                                                <div class="links-widget">
-                                                    <ul>
-                                                        <li><a itemprop="url" href="{{url('about')}}" title="">About Us</a></li>
-                                                        <li><a itemprop="url" href="{{url('why-us')}}" title="">What Makes us Different</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div><!-- Widget -->
-                                        </div>
-                                        <div class="col-md-6 column">
-                                            <div class="widget">
-                                                <div class="heading2">
-                                                    <span>Fast And Safe</span>
-                                                    <h3>SHIPPING SERVICES</h3>
-                                                </div>
-                                                <div class="links-widget">
-                                                    <ul>
-                                                        <li><a itemprop="url" href="{{$void}}" title="">Ground Transport</a></li>
-                                                        <li><a itemprop="url" href="{{$void}}" title="">Cargo</a></li>
-                                                        <li><a itemprop="url" href="{{$void}}" title="">Warehousing</a></li>
-                                                        <li><a itemprop="url" href="{{$void}}" title="">Logistic Service</a></li>
-                                                        <li><a itemprop="url" href="{{$void}}" title="">Trucking Service</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div><!-- Widget -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 column">
-                                    <div class="widget blue1">
-                                        <div class="heading2">
-                                            <span>FAST AND SAFE</span>
-                                            <h3>NEWSLETTER</h3>
-                                        </div>
-                                        <div class="subscription-form">
-                                            <p itemprop="description">Subscribe to our newsletter for the latest updates</p>
-                                            <form>
-                                                <input type="text" placeholder="Enter Your Email Address" />
-                                                <a title="" href="#" class="theme-btn" data-toggle="modal" data-target="#submission-message"><i class="fa fa-paper-plane"></i>SUBMIT</a>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <div class="bottom-line">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6 column">
-                            <span>&copy; {{date("Y")}} <a itemprop="url" title="" href="{{url('/')}}">DSG Couriers</a> - All Rights Reserved</span>
-                        </div>
-                        <div class="col-md-6 column">
-                            <ul>
-                                <li><a itemprop="url" href="{{url('/')}}" title="">HOME</a></li>
-                                <li><a itemprop="url" href="{{url('about')}}" title="">ABOUT US</a></li>
-                                <li><a itemprop="url" href="{{url('contact')}}" title="">CONTACT US</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="blank"></div>
-        </footer>	
 
-    </div>
-
-    <div class="modal fade" id="submission-message" tabindex="-1">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="submission-data">
-                        <span><img src="images/resource/submission.png" alt="" /></span>
-                        <h1>SUBMISSION SUCCESSFUL</h1>
-                        <p>Thank You For Your Booking With Unload. We Have Sent you a Message Shortly.</p>
-                        <a href="#" title="" class="theme-btn" data-dismiss="modal" aria-label="Close"><i class="fa fa-paper-plane"></i>BACK TO MAIN</a>
-                    </div><!-- Submission-data -->
-                </div>
+  <!-- FOOTER START -->
+  <div class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-middle">
+          <div class="row mb-60">
+            <div class="col-lg-4 f-col footer-middle-left">
+              <div class="f-logo"> 
+                <a href="{{url('/')}}" class=""> 
+                  <img src="images/footer-logo.png" alt="Electrro"> 
+                </a> 
+              </div>
+              <div class="footer-static-block"> <span class="opener plus"></span>
+                <ul class="footer-block-contant address-footer">
+                  <li class="item"> <i class="fa fa-map-marker"> </i>
+                    <p>150-A Appolo aprtment, opp. Hopewell Junction, <br>Allen st Road, new york-405001.</p>
+                  </li>
+                  <li class="item"> <i class="fa fa-envelope"> </i>
+                    <p> <a>infoservices@electrro.com </a> </p>
+                  </li>
+                  <li class="item"> <i class="fa fa-phone"> </i>
+                    <p>(+91) 9834567890</p>
+                  </li>
+                </ul>
+              </div>
             </div>
+            <div class="col-lg-8 footer-middle-right">
+              <div class="row">
+                <div class="col-lg-4 f-col">
+                  <div class="footer-static-block"> <span class="opener plus"></span>
+                    <h3 class="title">Help <span></span></h3>
+                    <ul class="footer-block-contant link">
+                      <li><a>Gift Cards</a></li>
+                      <li><a>Order Status</a></li>
+                      <li><a>Free Shipping</a></li>
+                      <li><a>Return & Exchange </a></li>
+                      <li><a>International</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-lg-4 f-col">
+                  <div class="footer-static-block"> <span class="opener plus"></span>
+                    <h3 class="title">Guidance <span></span></h3>
+                    <ul class="footer-block-contant link">
+                      <li><a> Delivery information</a></li>
+                      <li><a> Privacy Policy</a></li>
+                      <li><a> Terms & Conditions</a></li>
+                      <li><a> Contact</a></li>
+                      <li><a> Sitemap</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-lg-4 f-col">
+                  <div class="footer-static-block"> <span class="opener plus"></span>
+                    <h3 class="title">Information <span></span></h3>
+                    <ul class="footer-block-contant link">
+                      <li><a> Delivery information</a></li>
+                      <li><a> Privacy Policy</a></li>
+                      <li><a> Terms & Conditions</a></li>
+                      <li><a>Contact</a></li>
+                      <li><a> Sitemap</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+        <hr>
+        <div class="footer-bottom ">
+          <div class="row mtb-30">
+            <div class="col-lg-6 ">
+              <div class="copy-right ">© 2017  All Rights Reserved. Design By <a href="#">Aaryaweb</a></div>
+            </div>
+            <div class="col-lg-6 ">
+              <div class="footer_social pt-xs-15 center-sm">
+                <ul class="social-icon">
+                  <li><a title="Facebook" class="facebook"><i class="fa fa-facebook"> </i></a></li>
+                  <li><a title="Twitter" class="twitter"><i class="fa fa-twitter"> </i></a></li>
+                  <li><a title="Linkedin" class="linkedin"><i class="fa fa-linkedin"> </i></a></li>
+                  <li><a title="RSS" class="rss"><i class="fa fa-rss"> </i></a></li>
+                  <li><a title="Pinterest" class="pinterest"><i class="fa fa-pinterest"> </i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="row mtb-30">
+            <div class="col-xl-8 col-lg-12 ">
+              <div class="site-link">
+                <ul>
+                  <li><a>About Us</a></li>
+                  <li><a>Contact Us</a></li>
+                  <li><a>Customer </a></li>
+                  <li><a>Service</a></li>
+                  <li><a>Privacy</a></li>
+                  <li><a>Policy </a></li>
+                  <li><a>Accessibility</a></li>
+                  <li><a>Directory </a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xl-4 col-lg-12 ">
+              <div class="payment">
+                <ul class="payment_icon">
+                  <li class="visa"><a><img src="images/pay1.png" alt="Electrro"></a></li>
+                  <li class="discover"><a><img src="images/pay2.png" alt="Electrro"></a></li>
+                  <li class="paypal"><a><img src="images/pay3.png" alt="Electrro"></a></li>
+                  <li class="vindicia"><a><img src="images/pay4.png" alt="Electrro"></a></li>
+                  <li class="atos"><a><img src="images/pay5.png" alt="Electrro"></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+  <div class="scroll-top">
+    <div id="scrollup"></div>
+  </div>
+  <!-- FOOTER END --> 
+</div>
+<script src="js/jquery-1.12.3.min.js"></script> 
+<script src="js/bootstrap.min.js"></script>  
+<script src="js/jquery-ui.min.js"></script> 
+<script src="js/fotorama.js"></script>
+<script src="js/jquery.magnific-popup.js"></script> 
+<script src="js/owl.carousel.min.js"></script> 
+<script src="js/custom.js"></script>
 
-<!-- Script -->
-<script type="text/javascript" src="js/modernizr-2.0.6.js"></script><!-- Modernizr -->
-<script type="text/javascript" src="js/jquery-2.2.2.js"></script><!-- jQuery -->
-<script type="text/javascript" src="js/bootstrap.bundle.min.js"></script><!-- Bootstrap -->
-<script type="text/javascript" src="js/scrolltopcontrol.js"></script><!-- Scroll To Top -->
-<script type="text/javascript" src="js/scroll-up-bar.js"></script><!-- Scroll Up Bar -->
-<script type="text/javascript" src="js/jquery.scrolly.js"></script><!-- Scrolly -->
-<script type="text/javascript" src="js/owl.carousel.min.js"></script><!-- Owl Carousal -->
-<script type="text/javascript" src="js/icheck.js"></script><!-- iCheck -->
-<script type="text/javascript" src="js/select2.full.js"></script><!-- Select2 -->
-<script type="text/javascript" src="js/jquery.counterup.min.js"></script><!-- CounterUp -->
-<script type="text/javascript" src="js/waypoints.js"></script><!-- Waypoints -->
-<script type="text/javascript" src="js/perfect-scrollbar.js"></script><!-- Scroll Bar -->
-<script type="text/javascript" src="js/perfect-scrollbar.jquery.js"></script><!-- Scroll Bar -->
-
-<!-- External libraries: jQuery & GreenSock -->
-<script src="layerslider/js/greensock.js" type="text/javascript"></script>
-<!-- LayerSlider script files -->
-<script src="layerslider/js/layerslider.transitions.js" type="text/javascript"></script>
-<script src="layerslider/js/layerslider.kreaturamedia.jquery.js" type="text/javascript"></script>
-<script src="https://maps.googleapis.com/maps/api/js"></script>
-<script src="js/script.js"></script>
-<script src="js/mmm.js?ver={{rand(12454494,2237347438)}}"></script>
-<script src="js/helpers.js?ver={{rand(12454494,2237347438)}}"></script>
-<!--SweetAlert JS--> 
-<script src="lib/sweet-alert/sweetalert2.js"></script>
-
-<!--Datatables JS--> 
-<script src="lib/datatables/datatables.min.js"></script>
+<script>
+  /* ------------ Newslater-popup JS Start ------------- */
+  $(window).load(function() {
+    $.magnificPopup.open({
+      items: {src: '#newslater-popup'},type: 'inline'}, 0);
+  });
+    /* ------------ Newslater-popup JS End ------------- */
+</script>
 
 @yield('scripts')
 
@@ -474,74 +467,5 @@ foreach($plugins as $p)
 <!------------------------------------->
 @endif
 
-<script>
-    $(document).ready(function () {
-        "use strict";
-
-        $('.scrollup').scrollupbar();
-
-        //** Counter Up **//
-        $('.counter').counterUp({
-            delay: 10,
-            time: 1000
-        });
-
-        //** Slider  **//
-        $("#layerslider").layerSlider({
-            responsive: true,
-            responsiveUnder: 1170,
-            layersContainer: 1170,
-            skin: 'v5',
-            hoverPrevNext: true,
-            navPrevNext: true,
-            navStartStop: false,
-            navButtons: false,
-            skinsPath: 'layerslider/skins/'
-        });
-
-        //** Company Projects **//
-        $("#company-projects-list").addClass("loaded");
-
-        var l = $("#company-projects-list > ul li").length;
-        for (var i = 0; i <= l; i++) {
-            var room_list = $("#company-projects-list > ul li").eq(i);
-            var room_img_height = $(room_list).find(".company-project > img").innerHeight();
-            $(room_list).css({
-                "height": room_img_height
-            });
-            $(room_list).find(".company-project > img").css({
-                "width": "100%"
-            });
-        }
-
-        $("#company-projects-list > ul li.start").addClass("active");
-        $("#company-projects-list > ul li").on("mouseenter", function () {
-            $("#company-projects-list > ul li").removeClass("active");
-            $(this).addClass("active");
-        });
-
-        //** Blog Post Carousel **//	
-        $("#blog-post-carousel").owlCarousel({
-            autoplay: false,
-            autoplayTimeout: 3000,
-            smartSpeed: 2000,
-            loop: false,
-            dots: false,
-            nav: true,
-            margin: 10,
-            items: 1,
-            singleItem: true,
-        });
-
-        // Post // 
-        $(".post-thumb > span").on("click", function () {
-            $(this).parent("div").toggleClass("slide-down");
-            return false;
-        });
-    });
-
-    
-
-</script>
 </body>
 </html>
